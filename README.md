@@ -173,6 +173,13 @@ Contributions are welcome:
 
 ---
 
+## 🙌 Credits
+
+* **Creator**: [@ArchitJ6](https://github.com/ArchitJ6)
+* **Repository**: [MiniCraft-3D](https://github.com/ArchitJ6/MiniCraft-3D)
+
+---
+
 ## 📜 License
 
 MIT License

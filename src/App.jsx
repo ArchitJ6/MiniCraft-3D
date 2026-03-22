@@ -62,6 +62,29 @@ export default function App() {
         }}
       />
 
+      <a
+        href="https://github.com/ArchitJ6"
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          position: 'absolute',
+          bottom: 12,
+          right: 12,
+          zIndex: 120,
+          color: '#f5f5f5',
+          textDecoration: 'none',
+          fontSize: '12px',
+          letterSpacing: '0.2px',
+          background: 'rgba(0, 0, 0, 0.55)',
+          border: '1px solid rgba(255, 255, 255, 0.25)',
+          borderRadius: '999px',
+          padding: '6px 10px',
+          backdropFilter: 'blur(2px)',
+        }}
+      >
+        Created by @ArchitJ6
+      </a>
+
       {!isLocked && <Menu />}
     </div>
   );
