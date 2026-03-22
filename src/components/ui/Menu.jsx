@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import toast from 'react-hot-toast';
 import { useStore } from '../../store/useStore';
 
@@ -8,14 +8,18 @@ export const Menu = () => {
   const resetWorld = useStore((state) => state.resetWorld);
   const isDay = useStore((state) => state.isDay);
   const toggleDayNight = useStore((state) => state.toggleDayNight);
+  const fileInputRef = useRef(null);
 
   const btnStyle = {
-    marginRight: 10,
     padding: '10px 15px',
     cursor: 'pointer',
     background: 'white',
     border: '1px solid #ccc',
     borderRadius: '4px',
+    fontSize: '14px',
+    fontWeight: 500,
+    lineHeight: 1.2,
+    fontFamily: 'inherit',
   };
   const menuStyle = {
     position: 'absolute',
@@ -25,13 +29,6 @@ export const Menu = () => {
     display: 'flex',
     gap: '5px',
     alignItems: 'flex-start',
-  };
-  const popupBtnStyle = {
-    padding: '8px 10px',
-    cursor: 'pointer',
-    borderRadius: 6,
-    border: '1px solid #888',
-    background: 'white',
   };
 
   const handleFileChange = async (e) => {
@@ -46,6 +43,13 @@ export const Menu = () => {
     }
 
     e.target.value = '';
+  };
+
+  const triggerImportPicker = (e) => {
+    e.stopPropagation();
+    if (!fileInputRef.current) return;
+    fileInputRef.current.value = '';
+    fileInputRef.current.click();
   };
 
   return (
@@ -75,25 +79,18 @@ export const Menu = () => {
         Export World
       </button>
 
-      <label
-        style={{
-          ...popupBtnStyle,
-          position: 'relative',
-          display: 'inline-block',
-          textAlign: 'center',
-          marginRight: 10,
-          padding: '10px 15px',
-        }}
-      >
+      <button onClick={triggerImportPicker} style={btnStyle}>
         Import World
-        <input
-          type="file"
-          accept=".mmcw,.json,.txt,.bin,application/octet-stream,application/json,text/plain"
-          onChange={handleFileChange}
-          onClick={(e) => e.stopPropagation()}
-          style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer' }}
-        />
-      </label>
+      </button>
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept=".mmcw,.json,.txt,.bin,application/octet-stream,application/json,text/plain"
+        onChange={handleFileChange}
+        onClick={(e) => e.stopPropagation()}
+        style={{ display: 'none' }}
+      />
 
       <button
         onClick={(e) => {
