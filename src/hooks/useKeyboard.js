@@ -12,6 +12,9 @@ function actionByKey(key) {
     Digit3: 'glass',
     Digit4: 'wood',
     Digit5: 'log',
+    Digit6: 'shapeCube',
+    Digit7: 'shapeSphere',
+    Digit8: 'shapePyramid',
   };
   return keyActionMap[key];
 }
@@ -28,6 +31,9 @@ export const useKeyboard = () => {
     glass: false,
     wood: false,
     log: false,
+    shapeCube: false,
+    shapeSphere: false,
+    shapePyramid: false,
   });
 
   const handleKeyDown = useCallback((e) => {

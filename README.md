@@ -13,6 +13,7 @@ It also auto-saves progress to localStorage so accidental refreshes do not lose 
 
 * **First-person block building** with pointer lock controls
 * **Multiple block types** (`dirt`, `grass`, `glass`, `wood`, `log`)
+* **Multiple block shapes** (`cube`, `sphere`, `pyramid`)
 * **Day/Night toggle** with dynamic lighting and sky
 * **World export/import** (`.mmcw` + JSON fallback import)
 * **Auto-save** to localStorage on world updates
@@ -39,7 +40,8 @@ mini-minecraft/
 	├── index.css
 	│
 	├── constants/
-	│   └── textureColors.js
+	│   ├── textureColors.js
+	│   └── shapes.js
 	│
 	├── hooks/
 	│   └── useKeyboard.js
@@ -153,6 +155,18 @@ flowchart TD
 ```
 
 ---
+
+	## 🎮 Controls
+
+	* `W A S D` - Move
+	* `Space` - Jump
+	* `Click` - Place block
+	* `Alt + Click` - Remove block
+	* `1-5` - Select texture
+	* `6-8` - Select shape
+	* `ESC` - Unlock mouse / open menu
+
+	---
 
 ## 📤 World Data
 

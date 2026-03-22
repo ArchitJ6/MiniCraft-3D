@@ -55,6 +55,7 @@ const initialWorld = getStoredWorld();
 
 export const useStore = create((set, get) => ({
   texture: 'grass',
+  shape: 'cube',
   cubes: initialWorld.cubes,
   isDay: initialWorld.isDay,
   playerPos: [0, 2, 0],
@@ -67,14 +68,22 @@ export const useStore = create((set, get) => ({
     }),
   setPlayerPos: (playerPos) => set(() => ({ playerPos })),
 
-  addCube: (x, y, z) => {
+  addCube: (x, y, z, shape) => {
     const target = [x, y, z];
 
     set((state) => {
       const safePos = findSafePlacement(target, state.playerPos, state.cubes);
       if (!safePos) return state;
 
-      const nextCubes = [...state.cubes, { key: nanoid(), pos: safePos, texture: state.texture }];
+      const nextCubes = [
+        ...state.cubes,
+        {
+          key: nanoid(),
+          pos: safePos,
+          texture: state.texture,
+          shape: shape || state.shape,
+        },
+      ];
       persistWorld({ cubes: nextCubes, isDay: state.isDay });
 
       return {
@@ -96,6 +105,7 @@ export const useStore = create((set, get) => ({
   },
 
   setTexture: (texture) => set(() => ({ texture })),
+  setShape: (shape) => set(() => ({ shape })),
 
   exportWorldFile: () => {
     try {

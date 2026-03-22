@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import { textureColors } from '../constants/textureColors';
+import { validShapes } from '../constants/shapes';
 
 export const WORLD_STORAGE_KEY = 'mini_minecraft_world_v1';
 export const WORLD_FILE_MAGIC = [77, 77, 67, 87, 49]; // MMCW1
@@ -13,11 +14,13 @@ export const normalizeCubes = (cubes) => {
     .map((cube) => {
       const [x, y, z] = cube.pos.map((value) => Number(value));
       const safeTexture = textureColors[cube.texture] ? cube.texture : 'grass';
+      const safeShape = validShapes.includes(cube.shape) ? cube.shape : 'cube';
 
       return {
         key: typeof cube.key === 'string' ? cube.key : nanoid(),
         pos: [x, y, z],
         texture: safeTexture,
+        shape: safeShape,
       };
     })
     .filter((cube) => cube.pos.every((value) => Number.isFinite(value)));
